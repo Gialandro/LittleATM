@@ -1,18 +1,10 @@
-###Requirments:
-#Bueno un cajero automático que solo tenga un usuario y contraseña,
-#y un monto fijo (obviamente solo al cerrar el programa y volverlo a abrir).
-#Se pedirá usuario y contraseña para poder entrar al menú
-#Tiene que mostrar retirar, ingresar, consultar y salir a la pantalla de login
-#No puede retirar mas de 5000
-#Y no puede depositar mas de 7000
-#Y si se puede cada que ingrese a una opción o cabie de login a menu se limpie la pantalla
-
 import getpass
 import os
 import time
+import sys
 
-us = '123'#'Admin'
-pwd = '123'#'p@$$w0rd'
+us = 'Admin'
+pwd = 'p@$$w0rd'
 username = ''
 password = ''
 menu = ''
@@ -40,7 +32,7 @@ if username == us and password == pwd:
                 if ingreso < 7000.00:
                     capital += ingreso
                     print('Capital actual: ${0}'.format(capital))
-                    time.sleep(2)
+                    time.sleep(1)
             ingreso = 7000.00
         elif menu == '2':
             while retiro >= 5000.00:
@@ -48,5 +40,12 @@ if username == us and password == pwd:
                 if retiro < 5000.00 and retiro < capital:
                     capital -= retiro
                     print('Capital actual: ${0}'.format(capital))
-                    time.sleep(2)
+                    time.sleep(1)
             retiro = 5000.00
+        elif menu == '3':
+            print('Su saldo actual es de: ${0}'.format(capital))
+            time.sleep(1)
+        elif menu == '4':
+            print('Saliendo...')
+            time.sleep(1)
+            sys.exit()
