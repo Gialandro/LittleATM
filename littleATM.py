@@ -9,15 +9,16 @@
 
 import getpass
 import os
+import time
 
 us = '123'#'Admin'
 pwd = '123'#'p@$$w0rd'
 username = ''
 password = ''
-menu = 0
+menu = ''
 capital = 9999.99
-ingreso = 0.00
-retiro = 7000.00
+ingreso = 7000.00
+retiro = 5000.00
 while username != us or pwd != password:
     os.system('cls || clear')
     if username != '' and username != us:
@@ -28,11 +29,24 @@ while username != us or pwd != password:
         print('***Bienvenido*** \n Ingrese sus datos para acceder...')
     username = input('Usuario: ')
     password = getpass.getpass('Contraseña: ')
-    pass
 if username == us and password == pwd:
-    while menu <= 0 or menu >= 4:
-        menu = int(input('Menu: \n 1. Ingresar \n 2. Retirar \n 3. Consultar \n 4. Salir \n'))
-        if menu == 1:
+    while True:
+        os.system('cls || clear')
+        menu = ''
+        menu = input('Menu: \n 1. Ingresar \n 2. Retirar \n 3. Consultar \n 4. Salir \n')
+        if menu == '1':
             while ingreso >= 7000.00:
-                ingreso = float(input('Cantidad a depositar (Maximo $7000.00): $'))
-            pass
+                ingreso = float(input('Cantidad a depositar (Maximo $7,000.00): $'))
+                if ingreso < 7000.00:
+                    capital += ingreso
+                    print('Capital actual: ${0}'.format(capital))
+                    time.sleep(2)
+            ingreso = 7000.00
+        elif menu == '2':
+            while retiro >= 5000.00:
+                retiro = float(input('Cantidad a retirar (Maximo $5,000.00): $'))
+                if retiro < 5000.00 and retiro < capital:
+                    capital -= retiro
+                    print('Capital actual: ${0}'.format(capital))
+                    time.sleep(2)
+            retiro = 5000.00
